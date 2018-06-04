@@ -7,6 +7,9 @@ sudo pacman -Rs docker
 # Installing Required Software
 sudo pacman -S --noconfirm docker
 
+# Start docker
+sudo systemctl start docker
+
 # Creauser to user docker without sudo
 sudo groupadd docker
 sudo usermod -aG docker $USER
