@@ -28,5 +28,15 @@ sudo pacman -S php php-apache --noconfirm
 sudo sed -i '66 s/^/#/' /etc/httpd/conf/httpd.conf
 sudo sed -i '67 s/^#*//' /etc/httpd/conf/httpd.conf
 sudo sh -c 'echo -e "LoadModule php7_module modules/libphp7.so\nAddHandler php7-script php\nInclude conf/extra/php7_module.conf" >> /etc/httpd/conf/httpd.conf'
+sudo systemctl restart httpd
+
+# Install phpMyAdmin
+sudo pacman -S phpmyadmin --noconfirm 
+
+# Uncomment lines configurations 
+sudo sed -i '887,902 s/^;*//' /etc/php/php.ini
+sudo sh -c "echo -e 'Alias /phpmyadmin "/usr/share/webapps/phpMyAdmin"\n <Directory "/usr/share/webapps/phpMyAdmin">\n DirectoryIndex index.php\n AllowOverride All\n Options FollowSymlinks\n Require all granted\n </Directory>\n' >> /etc/httpd/conf/extra/phpmyadmin.conf"
+sudo sh -c "echo -e '\nInclude conf/extra/phpmyadmin.conf\n' >> /etc/httpd/conf/httpd.conf"
 
 sudo systemctl restart httpd
+
