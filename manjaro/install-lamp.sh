@@ -27,3 +27,6 @@ sudo pacman -S php php-apache --noconfirm
 # Comment/Uncomment lines configurations 
 sudo sed -i '66 s/^/#/' /etc/httpd/conf/httpd.conf
 sudo sed -i '67 s/^#*//' /etc/httpd/conf/httpd.conf
+sudo sh -c 'echo -e "LoadModule php7_module modules/libphp7.so\nAddHandler php7-script php\nInclude conf/extra/php7_module.conf" >> /etc/httpd/conf/httpd.conf'
+
+sudo systemctl restart httpd
