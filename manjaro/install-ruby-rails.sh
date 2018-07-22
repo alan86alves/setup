@@ -11,3 +11,6 @@ source ~/.bash_profile
 rvm requirements
 
 rvm install ruby
+
+gem install rails --no-document
+
